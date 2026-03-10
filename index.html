@@ -3,21 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Intercambio de Comisiones Medicina UNMDP</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <h2>Intercambio de Comisiones</h2>
+    <h2>Intercambio de Comisiones Medicina UNMDP</h2>
 
     <form id="form"
           action="https://script.google.com/macros/s/AKfycbyVbFaKj2JWE-C2F_NzjNuaig12tN9oSkNoAZFaPRMN_VISf0qnX2lhiviDTFqqRWodYA/exec"
           method="POST"
           target="hidden_iframe">
-        <iframe name="hidden_iframe" style="display:none;"></iframe>
 
-        <label>Materia</label><br>
-
-        <select id="materia">
+        <label>Materia</label>
+        <select id="materia" name="materia">
 
             <option>Concepción y Formación del Ser Humano I</option>
             <option>Articulación Básico Clínico Comunitaria I</option>
@@ -67,24 +86,26 @@
 
         <br><br>
 
-        <label>Comisión que tenés</label><br>
-        <select id="tengo"></select>
+        <label>Comisión que tenés</label>
+        <select id="tengo" name="tengo"></select>
 
         <br><br>
 
-        <label>Comisión que buscás</label><br>
-        <select id="busco"></select>
+        <label>Comisión que buscás</label>
+        <select id="busco" name="busco"></select>
 
         <br><br>
 
-        <label>Email</label><br>
-        <input type="email" id="email" required>
+        <label>Email</label>
+        <input type="email" id="email" name="email" required>
 
         <br><br>
 
         <button type="submit">Publicar</button>
 
     </form>
+
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
 
     <p id="msg"></p>
 
@@ -110,10 +131,20 @@
 
         form.addEventListener("submit", function () {
 
+            if (tengo.value == busco.value) {
+
+                alert("No podés buscar la misma comisión que tenés")
+                event.preventDefault()
+                return
+
+            }
+
             document.getElementById("msg").innerText = "Solicitud enviada"
 
             setTimeout(() => {
+
                 form.reset()
+
             }, 500)
 
         })
