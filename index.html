@@ -9,7 +9,11 @@
 
     <h2>Intercambio de Comisiones</h2>
 
-    <form id="form">
+    <form id="form"
+          action="https://script.google.com/macros/s/AKfycbyVbFaKj2JWE-C2F_NzjNuaig12tN9oSkNoAZFaPRMN_VISf0qnX2lhiviDTFqqRWodYA/exec"
+          method="POST"
+          target="hidden_iframe">
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
 
         <label>Materia</label><br>
 
@@ -86,8 +90,6 @@
 
     <script>
 
-        const scriptURL = "https://script.google.com/macros/s/AKfycbyVbFaKj2JWE-C2F_NzjNuaig12tN9oSkNoAZFaPRMN_VISf0qnX2lhiviDTFqqRWodYA/exec"
-
         const form = document.getElementById("form")
         const tengo = document.getElementById("tengo")
         const busco = document.getElementById("busco")
@@ -106,28 +108,13 @@
 
         }
 
-        form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", function () {
 
-            e.preventDefault()
+            document.getElementById("msg").innerText = "Solicitud enviada"
 
-            const formData = new FormData(form)
-
-            fetch(scriptURL, {
-                method: "POST",
-                body: formData
-            })
-                .then(() => {
-
-                    document.getElementById("msg").innerText = "Solicitud enviada"
-
-                    form.reset()
-
-                })
-                .catch(() => {
-
-                    document.getElementById("msg").innerText = "Error enviando solicitud"
-
-                })
+            setTimeout(() => {
+                form.reset()
+            }, 500)
 
         })
 
