@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Intercambio de Comisiones Medicina UNMDP</title>
+</head>
+
+<body>
+
+    <h2>Intercambio de Comisiones</h2>
+
+    <form id="form">
+
+        <label>Materia</label><br>
+
+        <select id="materia">
+
+            <option>Concepción y Formación del Ser Humano I</option>
+            <option>Articulación Básico Clínico Comunitaria I</option>
+            <option>Hábitat, Ecología y Salud</option>
+            <option>Psicología Comunitaria, Social e Institucional</option>
+            <option>Promoción de Salud Crítica y Educación para la Salud</option>
+            <option>Concepción y Formación del Ser Humano II</option>
+            <option>Articulación Básico Clínico Comunitaria II</option>
+
+            <option>Nacimiento, Crecimiento y Desarrollo</option>
+            <option>Articulación Básico Clínico Comunitaria III</option>
+            <option>Agentes, Mecanismos de Defensa y Nutrición</option>
+            <option>Prevención e Investigación Acción en Salud</option>
+            <option>Interculturalidad y Salud</option>
+            <option>Desgaste y Envejecimiento</option>
+
+            <option>Articulación Básico Clínico Comunitaria IV</option>
+            <option>Epidemiología Crítica Social y Comunitaria</option>
+            <option>Tamizaje y Ciencias de Diagnóstico</option>
+            <option>Redes y Sistemas de Salud</option>
+            <option>Salud Integral de la Mujer</option>
+
+            <option>Medicina Interna y Campos Clínicos I</option>
+            <option>Salud Colectiva y Comunitaria</option>
+            <option>Terapéuticas y Farmacología</option>
+            <option>Salud del Trabajador y Medicina del Deporte</option>
+            <option>Salud del Niño Niña y Adolescente</option>
+            <option>Salud Mental</option>
+
+            <option>Medicina Interna y Campos Clínicos II</option>
+            <option>Medicina General I</option>
+            <option>Programas de Salud</option>
+            <option>Salud del Adulto Mayor</option>
+            <option>Clínica Quirúrgica y Emergentología</option>
+            <option>Bioética y Derechos Humanos</option>
+            <option>Medicina General II y Rehabilitación</option>
+            <option>Medicina Legal y Toxicología</option>
+
+            <option>Tecnologías en Salud</option>
+            <option>Informática en Salud</option>
+            <option>Inglés Aplicado a la Medicina I</option>
+            <option>Inglés Aplicado a la Medicina II</option>
+            <option>Inglés Aplicado a la Medicina III</option>
+            <option>Inglés Aplicado a la Medicina IV</option>
+
+        </select>
+
+        <br><br>
+
+        <label>Comisión que tenés</label><br>
+        <select id="tengo"></select>
+
+        <br><br>
+
+        <label>Comisión que buscás</label><br>
+        <select id="busco"></select>
+
+        <br><br>
+
+        <label>Email</label><br>
+        <input type="email" id="email" required>
+
+        <br><br>
+
+        <button type="submit">Publicar</button>
+
+    </form>
+
+    <p id="msg"></p>
+
+    <script>
+
+        const scriptURL ="https://script.google.com/macros/s/AKfycbyVbFaKj2JWE-C2F_NzjNuaig12tN9oSkNoAZFaPRMN_VISf0qnX2lhiviDTFqqRWodYA/exec"
+
+const tengo=document.getElementById("tengo")
+const busco=document.getElementById("busco")
+
+for(let i=1;i<=40;i++){
+
+let o1=document.createElement("option")
+o1.value=i
+o1.text="Comisión "+i
+tengo.appendChild(o1)
+
+let o2=document.createElement("option")
+o2.value=i
+o2.text="Comisión "+i
+busco.appendChild(o2)
+
+}
+
+document.getElementById("form").addEventListener("submit",function(e){
+
+e.preventDefault()
+
+fetch(scriptURL,{
+method:"POST",
+body:JSON.stringify({
+materia:document.getElementById("materia").value,
+tengo:document.getElementById("tengo").value,
+busco:document.getElementById("busco").value,
+email:document.getElementById("email").value
+})
+})
+
+document.getElementById("msg").innerText="Solicitud registrada"
+
+})
+
+    </script>
+
+</body>
+</html>
