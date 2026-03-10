@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Intercambio de Comisiones Medicina UNMDP</title>
 </head>
 
@@ -15,60 +16,60 @@
 
         <select id="materia">
 
-            <option>Concepción y Formación del Ser Humano I</option>
-            <option>Articulación Básico Clínico Comunitaria I</option>
-            <option>Hábitat, Ecología y Salud</option>
-            <option>Psicología Comunitaria, Social e Institucional</option>
-            <option>Promoción de Salud Crítica y Educación para la Salud</option>
-            <option>Concepción y Formación del Ser Humano II</option>
-            <option>Articulación Básico Clínico Comunitaria II</option>
+            <option>Concepciï¿½n y Formaciï¿½n del Ser Humano I</option>
+            <option>Articulaciï¿½n Bï¿½sico Clï¿½nico Comunitaria I</option>
+            <option>Hï¿½bitat, Ecologï¿½a y Salud</option>
+            <option>Psicologï¿½a Comunitaria, Social e Institucional</option>
+            <option>Promociï¿½n de Salud Crï¿½tica y Educaciï¿½n para la Salud</option>
+            <option>Concepciï¿½n y Formaciï¿½n del Ser Humano II</option>
+            <option>Articulaciï¿½n Bï¿½sico Clï¿½nico Comunitaria II</option>
 
             <option>Nacimiento, Crecimiento y Desarrollo</option>
-            <option>Articulación Básico Clínico Comunitaria III</option>
-            <option>Agentes, Mecanismos de Defensa y Nutrición</option>
-            <option>Prevención e Investigación Acción en Salud</option>
+            <option>Articulaciï¿½n Bï¿½sico Clï¿½nico Comunitaria III</option>
+            <option>Agentes, Mecanismos de Defensa y Nutriciï¿½n</option>
+            <option>Prevenciï¿½n e Investigaciï¿½n Acciï¿½n en Salud</option>
             <option>Interculturalidad y Salud</option>
             <option>Desgaste y Envejecimiento</option>
 
-            <option>Articulación Básico Clínico Comunitaria IV</option>
-            <option>Epidemiología Crítica Social y Comunitaria</option>
-            <option>Tamizaje y Ciencias de Diagnóstico</option>
+            <option>Articulaciï¿½n Bï¿½sico Clï¿½nico Comunitaria IV</option>
+            <option>Epidemiologï¿½a Crï¿½tica Social y Comunitaria</option>
+            <option>Tamizaje y Ciencias de Diagnï¿½stico</option>
             <option>Redes y Sistemas de Salud</option>
             <option>Salud Integral de la Mujer</option>
 
-            <option>Medicina Interna y Campos Clínicos I</option>
+            <option>Medicina Interna y Campos Clï¿½nicos I</option>
             <option>Salud Colectiva y Comunitaria</option>
-            <option>Terapéuticas y Farmacología</option>
+            <option>Terapï¿½uticas y Farmacologï¿½a</option>
             <option>Salud del Trabajador y Medicina del Deporte</option>
-            <option>Salud del Niño Niña y Adolescente</option>
+            <option>Salud del Niï¿½o Niï¿½a y Adolescente</option>
             <option>Salud Mental</option>
 
-            <option>Medicina Interna y Campos Clínicos II</option>
+            <option>Medicina Interna y Campos Clï¿½nicos II</option>
             <option>Medicina General I</option>
             <option>Programas de Salud</option>
             <option>Salud del Adulto Mayor</option>
-            <option>Clínica Quirúrgica y Emergentología</option>
-            <option>Bioética y Derechos Humanos</option>
-            <option>Medicina General II y Rehabilitación</option>
-            <option>Medicina Legal y Toxicología</option>
+            <option>Clï¿½nica Quirï¿½rgica y Emergentologï¿½a</option>
+            <option>Bioï¿½tica y Derechos Humanos</option>
+            <option>Medicina General II y Rehabilitaciï¿½n</option>
+            <option>Medicina Legal y Toxicologï¿½a</option>
 
-            <option>Tecnologías en Salud</option>
-            <option>Informática en Salud</option>
-            <option>Inglés Aplicado a la Medicina I</option>
-            <option>Inglés Aplicado a la Medicina II</option>
-            <option>Inglés Aplicado a la Medicina III</option>
-            <option>Inglés Aplicado a la Medicina IV</option>
+            <option>Tecnologï¿½as en Salud</option>
+            <option>Informï¿½tica en Salud</option>
+            <option>Inglï¿½s Aplicado a la Medicina I</option>
+            <option>Inglï¿½s Aplicado a la Medicina II</option>
+            <option>Inglï¿½s Aplicado a la Medicina III</option>
+            <option>Inglï¿½s Aplicado a la Medicina IV</option>
 
         </select>
 
         <br><br>
 
-        <label>Comisión que tenés</label><br>
+        <label>Comisiï¿½n que tenï¿½s</label><br>
         <select id="tengo"></select>
 
         <br><br>
 
-        <label>Comisión que buscás</label><br>
+        <label>Comisiï¿½n que buscï¿½s</label><br>
         <select id="busco"></select>
 
         <br><br>
@@ -95,12 +96,12 @@ for(let i=1;i<=40;i++){
 
 let o1=document.createElement("option")
 o1.value=i
-o1.text="Comisión "+i
+o1.text="Comisiï¿½n "+i
 tengo.appendChild(o1)
 
 let o2=document.createElement("option")
 o2.value=i
-o2.text="Comisión "+i
+o2.text="Comisiï¿½n "+i
 busco.appendChild(o2)
 
 }
@@ -109,15 +110,25 @@ document.getElementById("form").addEventListener("submit",function(e){
 
 e.preventDefault()
 
-fetch(scriptURL,{
-method:"POST",
-body:JSON.stringify({
-materia:document.getElementById("materia").value,
-tengo:document.getElementById("tengo").value,
-busco:document.getElementById("busco").value,
-email:document.getElementById("email").value
-})
-})
+    fetch(scriptURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            materia: document.getElementById("materia").value,
+            tengo: document.getElementById("tengo").value,
+            busco: document.getElementById("busco").value,
+            email: document.getElementById("email").value
+        })
+    })
+        .then(r => r.text())
+        .then(data => {
+            document.getElementById("msg").innerText = "Solicitud registrada"
+        })
+        .catch(err => {
+            document.getElementById("msg").innerText = "Error enviando solicitud"
+        })
 
 document.getElementById("msg").innerText="Solicitud registrada"
 
