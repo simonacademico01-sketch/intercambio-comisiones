@@ -12,7 +12,29 @@
             max-width: 600px;
             margin: auto;
             padding: 20px;
+            background: #fafafa;
         }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .instrucciones {
+            background: #f1f5ff;
+            border: 1px solid #d6defa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+            .instrucciones h3 {
+                margin-top: 0;
+            }
+
+            .instrucciones ul {
+                padding-left: 18px;
+                margin-bottom: 0;
+            }
 
         select, input, button {
             width: 100%;
@@ -22,7 +44,16 @@
 
         button {
             cursor: pointer;
+            background: #3b5cff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
         }
+
+            button:hover {
+                background: #2f4ae0;
+            }
 
         #msg {
             margin-top: 20px;
@@ -34,6 +65,22 @@
 <body>
 
     <h2>Intercambio de Comisiones Medicina UNMDP</h2>
+
+    <div class="instrucciones">
+
+        <h3>Cómo usar la página</h3>
+
+        <ul>
+            <li>Seleccioná la <b>materia</b>.</li>
+            <li>Elegí la <b>comisión que tenés actualmente</b>.</li>
+            <li>Elegí la <b>comisión a la que querés cambiarte</b>.</li>
+            <li>Ingresá tu <b>email</b> para que puedan contactarte.</li>
+            <li>Cuando se encuentre un intercambio posible vas a recibir un <b>correo automático</b>.</li>
+            <li>Solo podés registrar <b>una comisión por materia</b>.</li>
+            <li>No publiques solicitudes falsas o incorrectas.</li>
+        </ul>
+
+    </div>
 
     <form id="form"
           action="https://script.google.com/macros/s/AKfycbz1aM5R_Gygv8F1zQ3Ha_RVdOL_MAlqULzH6ycCfie5WkFSsUqoNfkh0WrJb5aVvXnFiw/exec"
