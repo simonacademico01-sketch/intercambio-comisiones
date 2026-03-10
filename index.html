@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Intercambio de Comisiones Medicina UNMDP</title>
@@ -22,8 +23,12 @@
         button {
             cursor: pointer;
         }
-    </style>
 
+        #msg {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,12 +36,15 @@
     <h2>Intercambio de Comisiones Medicina UNMDP</h2>
 
     <form id="form"
-          action="https://script.google.com/macros/s/AKfycbyVbFaKj2JWE-C2F_NzjNuaig12tN9oSkNoAZFaPRMN_VISf0qnX2lhiviDTFqqRWodYA/exec"
+          action="https://script.google.com/macros/s/AKfycbz1aM5R_Gygv8F1zQ3Ha_RVdOL_MAlqULzH6ycCfie5WkFSsUqoNfkh0WrJb5aVvXnFiw/exec"
           method="POST"
           target="hidden_iframe">
 
         <label>Materia</label>
-        <select id="materia" name="materia">
+
+        <select name="materia" required>
+
+            <option value="">Seleccionar materia</option>
 
             <option>Concepción y Formación del Ser Humano I</option>
             <option>Articulación Básico Clínico Comunitaria I</option>
@@ -87,21 +95,21 @@
         <br><br>
 
         <label>Comisión que tenés</label>
-        <select id="tengo" name="tengo"></select>
+        <select id="tengo" name="tengo" required></select>
 
         <br><br>
 
         <label>Comisión que buscás</label>
-        <select id="busco" name="busco"></select>
+        <select id="busco" name="busco" required></select>
 
         <br><br>
 
         <label>Email</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" name="email" required>
 
         <br><br>
 
-        <button type="submit">Publicar</button>
+        <button type="submit">Publicar solicitud</button>
 
     </form>
 
@@ -114,6 +122,7 @@
         const form = document.getElementById("form")
         const tengo = document.getElementById("tengo")
         const busco = document.getElementById("busco")
+        const msg = document.getElementById("msg")
 
         for (let i = 1; i <= 40; i++) {
 
@@ -131,6 +140,8 @@
 
         form.addEventListener("submit", function (e) {
 
+            msg.innerText = ""
+
             if (tengo.value == busco.value) {
 
                 e.preventDefault()
@@ -139,7 +150,15 @@
 
             }
 
-            document.getElementById("msg").innerText = "Solicitud enviada"
+            msg.innerText = "Publicando solicitud..."
+
+        })
+
+        document.querySelector("iframe").addEventListener("load", function () {
+
+            msg.innerText = "Solicitud publicada correctamente"
+
+            form.reset()
 
         })
 
