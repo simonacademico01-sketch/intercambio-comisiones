@@ -88,6 +88,7 @@
 
         const scriptURL = "https://script.google.com/macros/s/AKfycbyVbFaKj2JWE-C2F_NzjNuaig12tN9oSkNoAZFaPRMN_VISf0qnX2lhiviDTFqqRWodYA/exec"
 
+        const form = document.getElementById("form")
         const tengo = document.getElementById("tengo")
         const busco = document.getElementById("busco")
 
@@ -105,39 +106,28 @@
 
         }
 
-        document.getElementById("form").addEventListener("submit", function (e) {
+        form.addEventListener("submit", function (e) {
 
             e.preventDefault()
 
-            const form = document.getElementById("form");
+            const formData = new FormData(form)
 
-            form.addEventListener("submit", function (e) {
-                e.preventDefault();
-
-                const scriptURL = "https://script.google.com/macros/s/AKfycbyVbFaKj2JWE-C2F_NzjNuaig12tN9oSkNoAZFaPRMN_VISf0qnX2lhiviDTFqqRWodYA/exec"
-
-                const formData = new FormData(form)
-
-                fetch(scriptURL, {
-                    method: "POST",
-                    body: formData
-                })
-                    .then(() => {
-
-                        document.getElementById("msg").innerText = "Solicitud enviada"
-
-                        form.reset()
-
-                    })
-                    .catch(() => {
-
-                        document.getElementById("msg").innerText = "Error enviando solicitud"
-
-                    })
-
+            fetch(scriptURL, {
+                method: "POST",
+                body: formData
             })
+                .then(() => {
 
-            document.getElementById("msg").innerText = "Solicitud registrada"
+                    document.getElementById("msg").innerText = "Solicitud enviada"
+
+                    form.reset()
+
+                })
+                .catch(() => {
+
+                    document.getElementById("msg").innerText = "Error enviando solicitud"
+
+                })
 
         })
 
