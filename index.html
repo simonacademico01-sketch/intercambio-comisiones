@@ -119,6 +119,8 @@
 
     <script>
 
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1aM5R_Gygv8F1zQ3Ha_RVdOL_MAlqULzH6ycCfie5WkFSsUqoNfkh0WrJb5aVvXnFiw/exec"
+
         const form = document.getElementById("form")
         const tengo = document.getElementById("tengo")
         const busco = document.getElementById("busco")
@@ -138,13 +140,14 @@
 
         }
 
-        form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", async function (e) {
+
+            e.preventDefault()
 
             msg.innerText = ""
 
             if (tengo.value == busco.value) {
 
-                e.preventDefault()
                 alert("No podés buscar la misma comisión que tenés")
                 return
 
@@ -152,13 +155,58 @@
 
             msg.innerText = "Publicando solicitud..."
 
-        })
+            const formData = new FormData(form)
 
-        document.querySelector("iframe").addEventListener("load", function () {
+            try {
 
-            msg.innerText = "Solicitud publicada correctamente"
+                const response = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    body: formData
+                })
 
-            form.reset()
+                const texto = await response.text()
+
+                if (texto === "ok") {
+
+                    msg.innerText = "Solicitud publicada correctamente"
+                    form.reset()
+
+                }
+
+                else if (texto === "ya existe solicitud") {
+
+                    msg.innerText = ""
+                    alert("Ya registraste exactamente esta misma solicitud.")
+
+                }
+
+                else if (texto === "email invalido") {
+
+                    msg.innerText = ""
+                    alert("El email ingresado no es válido.")
+
+                }
+
+                else if (texto === "datos invalidos") {
+
+                    msg.innerText = ""
+                    alert("Faltan datos en el formulario.")
+
+                }
+
+                else {
+
+                    msg.innerText = ""
+                    alert("Ocurrió un error inesperado.")
+
+                }
+
+            } catch (error) {
+
+                msg.innerText = ""
+                alert("No se pudo conectar con el servidor.")
+
+            }
 
         })
 
