@@ -111,8 +111,6 @@
 
     <script>
 
-        const scriptURL = "https://script.google.com/macros/s/AKfycbyVbFaKj2JWE-C2F_NzjNuaig12tN9oSkNoAZFaPRMN_VISf0qnX2lhiviDTFqqRWodYA/exec"
-
         const form = document.getElementById("form")
         const tengo = document.getElementById("tengo")
         const busco = document.getElementById("busco")
@@ -133,28 +131,15 @@
 
         form.addEventListener("submit", function (e) {
 
-            e.preventDefault()
-
             if (tengo.value == busco.value) {
 
+                e.preventDefault()
                 alert("No podés buscar la misma comisión que tenés")
                 return
 
             }
 
-            const formData = new FormData(form)
-
-            fetch(scriptURL, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            })
-
             document.getElementById("msg").innerText = "Solicitud enviada"
-
-            setTimeout(() => {
-                form.reset()
-            }, 500)
 
         })
 
