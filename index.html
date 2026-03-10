@@ -177,7 +177,7 @@
     </div>
 
     <script>
-
+        let filaSolicitud = null
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1aM5R_Gygv8F1zQ3Ha_RVdOL_MAlqULzH6ycCfie5WkFSsUqoNfkh0WrJb5aVvXnFiw/exec"
 
         const form = document.getElementById("form")
@@ -235,14 +235,18 @@
 
                 }
 
-                else if (texto === "ya existe solicitud") {
+                else if (texto.startsWith("ya existe solicitud")) {
+
+                    filaSolicitud = texto.split("|")[1]
 
                     msg.innerText = "Ya registraste exactamente esta solicitud."
                     borrarBox.style.display = "block"
 
                 }
 
-                else if (texto === "ya tenes otra comision registrada") {
+                else if (texto.startsWith("ya tenes otra comision registrada")) {
+
+                    filaSolicitud = texto.split("|")[1]
 
                     msg.innerText = "Ya registraste otra comisión para esta materia. Si te equivocaste podés borrar tu solicitud anterior."
                     borrarBox.style.display = "block"
@@ -283,8 +287,9 @@
 
             if (!confirm("¿Seguro que querés borrar tu solicitud?")) return
 
-            const formData = new FormData(form)
+            const formData = new FormData()
             formData.append("accion", "borrar")
+            formData.append("fila", filaSolicitud)
 
             msg.innerText = "Borrando solicitud..."
 
