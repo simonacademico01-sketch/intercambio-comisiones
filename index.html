@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Intercambio de Comisiones Medicina UNMDP</title>
 
     <style>
@@ -72,6 +73,32 @@
             #borrarBtn:hover {
                 background: #c9302c;
             }
+
+        /* DISCLAIMER */
+
+        #disclaimer {
+            position: fixed;
+            bottom: 12px;
+            left: 12px;
+            max-width: 280px;
+            font-size: 11px;
+            color: #555;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e2e2e2;
+            line-height: 1.45;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+            #disclaimer a {
+                color: #3b5cff;
+                text-decoration: none;
+            }
+
+                #disclaimer a:hover {
+                    text-decoration: underline;
+                }
     </style>
 </head>
 
@@ -202,7 +229,9 @@
     </div>
 
     <script>
+
         let filaSolicitud = null
+
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1aM5R_Gygv8F1zQ3Ha_RVdOL_MAlqULzH6ycCfie5WkFSsUqoNfkh0WrJb5aVvXnFiw/exec"
 
         const form = document.getElementById("form")
@@ -263,7 +292,6 @@
                 else if (texto.startsWith("ya existe solicitud")) {
 
                     filaSolicitud = texto.split("|")[1]
-
                     msg.innerText = "Ya registraste exactamente esta solicitud."
                     borrarBox.style.display = "block"
 
@@ -272,23 +300,8 @@
                 else if (texto.startsWith("ya tenes otra comision registrada")) {
 
                     filaSolicitud = texto.split("|")[1]
-
                     msg.innerText = "Ya registraste otra comisión para esta materia. Si te equivocaste podés borrar tu solicitud anterior."
                     borrarBox.style.display = "block"
-
-                }
-
-                else if (texto === "email invalido") {
-
-                    msg.innerText = ""
-                    alert("El email ingresado no es válido.")
-
-                }
-
-                else if (texto === "datos invalidos") {
-
-                    msg.innerText = ""
-                    alert("Faltan datos en el formulario.")
 
                 }
 
@@ -299,7 +312,7 @@
 
                 }
 
-            } catch (error) {
+            } catch {
 
                 msg.innerText = ""
                 alert("No se pudo conectar con el servidor.")
@@ -335,14 +348,12 @@
 
                 } else {
 
-                    msg.innerText = ""
-                    alert("No se encontró una solicitud para borrar con esos datos.")
+                    alert("No se encontró la solicitud.")
 
                 }
 
             } catch {
 
-                msg.innerText = ""
                 alert("Error al borrar la solicitud.")
 
             }
@@ -350,6 +361,22 @@
         })
 
     </script>
+
+    <div id="disclaimer">
+
+        <b>Aviso</b><br>
+
+        Esta página es una herramienta creada por estudiantes para facilitar el intercambio de comisiones.
+        Puede contener errores o comportamientos inesperados.<br><br>
+
+        El uso del sistema y la coordinación de intercambios es responsabilidad exclusiva de los usuarios.<br><br>
+
+        Proyecto independiente creado por <b>Simón</b>.<br>
+        No afiliado oficialmente a la Facultad de Ciencias de la Salud (UNMDP).<br><br>
+
+        <a href="mailto:simonacademico01@gmail.com">Reportar error o bug</a>
+
+    </div>
 
 </body>
 </html>
