@@ -59,6 +59,19 @@
             margin-top: 20px;
             font-weight: bold;
         }
+
+        #borrarBox {
+            margin-top: 10px;
+            display: none;
+        }
+
+        #borrarBtn {
+            background: #d9534f;
+        }
+
+            #borrarBtn:hover {
+                background: #c9302c;
+            }
     </style>
 </head>
 
@@ -77,15 +90,12 @@
             <li>Ingresá tu <b>email</b> para que puedan contactarte.</li>
             <li>Cuando se encuentre un intercambio posible vas a recibir un <b>correo automático</b>.</li>
             <li>Solo podés registrar <b>una comisión por materia</b>.</li>
-            <li>No publiques solicitudes falsas o incorrectas.</li>
+            <li>Las solicitudes se eliminan automáticamente luego de <b>30 días</b>.</li>
         </ul>
 
     </div>
 
-    <form id="form"
-          action="https://script.google.com/macros/s/AKfycbz1aM5R_Gygv8F1zQ3Ha_RVdOL_MAlqULzH6ycCfie5WkFSsUqoNfkh0WrJb5aVvXnFiw/exec"
-          method="POST"
-          target="hidden_iframe">
+    <form id="form">
 
         <label>Materia</label>
 
@@ -160,9 +170,11 @@
 
     </form>
 
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-
     <p id="msg"></p>
+
+    <div id="borrarBox">
+        <button id="borrarBtn">Borrar mi solicitud</button>
+    </div>
 
     <script>
 
@@ -172,6 +184,8 @@
         const tengo = document.getElementById("tengo")
         const busco = document.getElementById("busco")
         const msg = document.getElementById("msg")
+        const borrarBox = document.getElementById("borrarBox")
+        const borrarBtn = document.getElementById("borrarBtn")
 
         for (let i = 1; i <= 40; i++) {
 
@@ -192,6 +206,7 @@
             e.preventDefault()
 
             msg.innerText = ""
+            borrarBox.style.display = "none"
 
             if (tengo.value == busco.value) {
 
@@ -222,8 +237,15 @@
 
                 else if (texto === "ya existe solicitud") {
 
-                    msg.innerText = ""
-                    alert("Ya registraste exactamente esta misma solicitud.")
+                    msg.innerText = "Ya registraste exactamente esta solicitud."
+                    borrarBox.style.display = "block"
+
+                }
+
+                else if (texto === "ya tenes otra comision registrada") {
+
+                    msg.innerText = "Ya registraste otra comisión para esta materia. Si te equivocaste podés borrar tu solicitud anterior."
+                    borrarBox.style.display = "block"
 
                 }
 
@@ -241,13 +263,6 @@
 
                 }
 
-                else if (texto === "ya tenes otra comision registrada") {
-
-                    msg.innerText = ""
-                    alert("Ya registraste otra comisión para esta materia. Solo podés tener una comisión.")
-
-                }
-
                 else {
 
                     msg.innerText = ""
@@ -259,6 +274,46 @@
 
                 msg.innerText = ""
                 alert("No se pudo conectar con el servidor.")
+
+            }
+
+        })
+
+        borrarBtn.addEventListener("click", async function () {
+
+            if (!confirm("¿Seguro que querés borrar tu solicitud?")) return
+
+            const formData = new FormData(form)
+            formData.append("accion", "borrar")
+
+            msg.innerText = "Borrando solicitud..."
+
+            try {
+
+                const response = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    body: formData
+                })
+
+                const texto = await response.text()
+
+                if (texto === "borrado") {
+
+                    msg.innerText = "Solicitud eliminada correctamente."
+                    borrarBox.style.display = "none"
+                    form.reset()
+
+                } else {
+
+                    msg.innerText = ""
+                    alert("No se encontró una solicitud para borrar con esos datos.")
+
+                }
+
+            } catch {
+
+                msg.innerText = ""
+                alert("Error al borrar la solicitud.")
 
             }
 
